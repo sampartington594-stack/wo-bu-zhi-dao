@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>wo bu zhi dao :(</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:"SFMono-Regular","Cascadia Code","Roboto Mono",Menlo,Consolas,monospace}body{background:radial-gradient(circle at 15% 20%,rgba(120,100,180,.12),transparent 35%),radial-gradient(circle at 80% 70%,rgba(80,80,150,.10),transparent 35%),#090a12;color:#f1eff7}.app{width:100%;height:100%;padding:20px 48px 28px;display:flex;flex-direction:column}.bottom{flex:1;min-height:180px;display:flex;flex-direction:column}.tabs{height:50px;display:flex;align-items:center;gap:8px;padding-left:40px}.tab{height:34px;padding:0 14px;border-radius:5px;display:flex;align-items:center;font-size:13px;letter-spacing:2px;font-weight:700;color:#777483;cursor:pointer}.tab.active{background:rgba(255,255,255,.07);color:#f2eff8}.console{flex:1;padding:3px 44px 18px;overflow-y:auto;font-size:15px;line-height:1.52;color:#eeeaf5}.console-input-line{display:flex;align-items:center;min-height:23px}.console-input{flex:1;outline:none;border:none;background:transparent;color:#eeeaf5;font:inherit;padding:0;margin:0}.answer{color:#f0edf7}.cursor{display:inline-block;width:9px;height:17px;background:#f0edf7;animation:blink 1s steps(1) infinite;vertical-align:-3px;flex-shrink:0}@keyframes blink{50%{opacity:0}}.preview{display:none;height:100%;padding:25px 35px;overflow:auto}.preview-inner{max-width:720px;margin:auto;text-align:center;padding-top:20px}.preview h1{font-size:42px;margin:10px 0;letter-spacing:-2px}.preview p{color:#85818f;margin-bottom:30px}.search{display:flex;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.045);border-radius:8px;overflow:hidden}.search input{flex:1;min-width:0;border:0;outline:none;background:transparent;color:white;padding:15px;font:inherit}.search button{border:0;background:rgba(255,255,255,.10);color:white;padding:0 20px;font:inherit;cursor:pointer}.preview-answer{margin-top:30px;font-size:23px;font-weight:bold;opacity:0;transition:.2s}.preview-answer.show{opacity:1}@media(max-width:700px){.app{padding:10px}.bottom{height:230px}.console{padding-left:20px;padding-right:20px;font-size:13px}.tabs{padding-left:15px}.preview h1{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="bottom"><div class="tabs"><div class="tab active" id="consoleTab">CONSOLE</div><div class="tab" id="previewTab">PREVIEW</div></div><div class="console" id="console"><div class="console-input-line" id="inputLine"><input id="consoleInput" class="console-input" type="text" autocomplete="off" autofocus><span class="cursor"></span></div></div><div class="preview" id="preview"><div class="preview-inner"><h1>wo bu zhi dao :(</h1><p>the world's least useful search engine</p><form class="search" id="searchForm"><input type="text" id="searchInput" placeholder="ask anything..." autocomplete="off"><button type="submit">ask</button></form><div class="preview-answer" id="previewAnswer">wo bu zhi dao :(</div></div></div></div>
+</div>
+<script>
+const consoleBox=document.getElementById("console");
+function attachConsoleInput(input){input.focus();input.addEventListener("keydown",function(event){if(event.key!=="Enter")return;const question=input.value.trim();if(!question)return;const userLine=document.createElement("div");userLine.className="console-input-line";userLine.textContent=question;const answerLine=document.createElement("div");answerLine.className="answer";answerLine.textContent="wo bu zhi dao :(";document.getElementById("inputLine").before(userLine,answerLine);input.value="";consoleBox.scrollTop=consoleBox.scrollHeight;});}
+attachConsoleInput(document.getElementById("consoleInput"));
+const consoleTab=document.getElementById("consoleTab"),previewTab=document.getElementById("previewTab"),consoleElement=document.getElementById("console"),previewElement=document.getElementById("preview");
+consoleTab.addEventListener("click",function(){consoleTab.classList.add("active");previewTab.classList.remove("active");consoleElement.style.display="block";previewElement.style.display="none";document.getElementById("consoleInput").focus();});
+previewTab.addEventListener("click",function(){previewTab.classList.add("active");consoleTab.classList.remove("active");consoleElement.style.display="none";previewElement.style.display="block";document.getElementById("searchInput").focus();});
+document.getElementById("searchForm").addEventListener("submit",function(event){event.preventDefault();const answer=document.getElementById("previewAnswer");answer.classList.remove("show");setTimeout(()=>answer.classList.add("show"),50);});
+</script>
+</body>
+</html>
